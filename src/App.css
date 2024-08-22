@@ -1,4 +1,4 @@
-ul {
+.userlist {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -7,7 +7,7 @@ ul {
     gap: 20px; 
   }
   
-  li {
+  .userinfo {
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -28,3 +28,6 @@ ul {
     text-align: left;
   }
   
+  .btn {
+    margin: 10px 20px ;
+  }
