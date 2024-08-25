@@ -34,9 +34,9 @@ const InputFocus = () => {
                     </li>
                 ))}
             </ul>
-            <div className="d-flex justify-content-end mb-3">
+            {/* <div className="d-flex justify-content-end mb-3">
                 <button onClick={deleteList} className="btn btn-danger">Delete All</button>
-            </div>
+            </div> */}
         </div>
 
     )

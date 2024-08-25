@@ -30,10 +30,30 @@ function UserTable() {
             })
             .catch(error => console.error('Error fetching data with Fetch:', error))
     }, [])
-   
+
     return (
         <Container>
             <h1>User table </h1>
+            <table className="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((user, i) => (
+                        <tr key={i}>
+                            <th scope="row">{i + 1}</th>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>{user.role}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
 
         </Container>
     );

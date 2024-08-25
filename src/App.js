@@ -7,6 +7,8 @@ import Header from './components/header'
 import Container from 'react-bootstrap/Container';
 import User from './components/user'
 import InputFocus from './components/InputFocus'
+import UserTable from './components/userTable'
+import Footer from './components/footer'
 
 function App() {
 
@@ -15,7 +17,8 @@ function App() {
       <div className='app-container'>
         <Header />
         <InputFocus/>
-        <User />
+        <UserTable />
+        <Footer/>
       </div>
     </Container>
   );
