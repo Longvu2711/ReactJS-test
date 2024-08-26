@@ -5,22 +5,38 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button } from 'react-bootstrap'
 import Header from './components/header'
 import Container from 'react-bootstrap/Container';
-import User from './components/user'
+import User from './data/user/user'
 import InputFocus from './components/InputFocus'
-import UserTable from './components/userTable'
+import UserTable from './data/user/userTable'
 import Footer from './components/footer'
+import Login from './form/login'
+import Signup from './form/signup'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './form/home'
+
+
 
 function App() {
 
   return (
-    <Container>
-      <div className='app-container'>
-        <Header />
-        <InputFocus/>
-        <UserTable />
-        <Footer/>
-      </div>
-    </Container>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<Login />} />
+
+      </Routes>
+    </Router>
+
+    // <Container>
+    //   <div className='app-container'>
+    //     <Header />
+    //     <InputFocus />
+    //     <UserTable />
+    //     <Footer/>
+    //   </div>
+    // </Container>
   );
 }
 

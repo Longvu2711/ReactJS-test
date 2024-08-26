@@ -10,7 +10,7 @@ const InputFocus = () => {
 
     const handlerAdd = (e) => {
         if (e.key === 'Enter') {
-            setData([...data, e.target.value])
+            setData([ e.target.value,...data])
             e.target.value = ''
         }
     }
@@ -19,24 +19,22 @@ const InputFocus = () => {
     }
 
     return (
-        <div className="border border-2 border-gray-800 rounded p-3">
+        <div className="border border-2 border-gray-800 rounded p-3 w-100">
             <input
                 ref={inputRef}
                 onKeyDown={handlerAdd}
                 type="text"
-                placeholder="Type something"
-                className="form-control w-100 mb-3" // sử dụng 'form-control' để áp dụng kiểu Bootstrap cho input
+                placeholder="Note"
+                className="form-control w-100 mb-3" 
             />
             <ul className="list-group list-disc pl-4">
                 {data.map((item, index) => (
-                    <li key={index} className="list-group-item">
+                    <li key={-index} className="list-group-item">
                         {item}
                     </li>
                 ))}
             </ul>
-            {/* <div className="d-flex justify-content-end mb-3">
-                <button onClick={deleteList} className="btn btn-danger">Delete All</button>
-            </div> */}
+          
         </div>
 
     )
