@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
 import { Container } from 'react-bootstrap';
-import InputFocus from '../../components/InputFocus';
 
 function UserTable() {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [noResults, setNoResults] = useState(false); 
 
     useEffect(() => {
         fetch('/test/user')
             .then(response => response.json())
             .then(data => {
                 setData(data);
-                setFilteredData(data); 
+                setFilteredData(data);
             })
             .catch(error => console.error('Error fetching data with Fetch:', error));
     }, []);
@@ -21,14 +20,16 @@ function UserTable() {
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
             if (searchTerm === '') {
-                setFilteredData(data); 
+                setFilteredData(data);
+                setNoResults(false);
             } else {
                 const filtered = data.filter(user =>
                     user.email && user.email.toLowerCase().includes(searchTerm.toLowerCase())
                 );
                 setFilteredData(filtered);
+                setNoResults(filtered.length === 0);
             }
-        }, 500); // Delay
+        }, 500);
 
         return () => clearTimeout(delayDebounceFn);
     }, [searchTerm, data]);
@@ -47,26 +48,30 @@ function UserTable() {
                 onChange={handleSearchChange}
                 className="form-control mb-3"
             />
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredData.map((user, i) => (
-                        <tr key={i}>
-                            <th scope="row">{i + 1}</th>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{user.role}</td>
+            {noResults ? (
+                <p>Không tìm thấy</p>
+            ) : (
+                <table className="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {filteredData.map((user, i) => (
+                            <tr key={i}>
+                                <th scope="row">{i + 1}</th>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td>{user.role}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </Container>
     );
 }

@@ -12,7 +12,12 @@ const Login = () => {
         try {
             const res = await axios.post('http://localhost:8080/test/login', { email, password })
             localStorage.setItem('token', res.data.token)
-            alert('Login successful!')
+            console.log(res.data.message);
+            if (res.data.role === 'admin') {
+                navigate('/admin'); 
+            } else {
+                navigate('/home'); 
+            }
         } catch (err) {
             alert('Login failed!')
             console.log({message: err.message})

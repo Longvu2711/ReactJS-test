@@ -17,7 +17,8 @@ const Signup = () => {
         try {
             const res = await axios.post('http://localhost:8080/test/signup', { email, password, role })  
             localStorage.setItem('token', res.data.token)  
-            alert('Signup successful!')  
+            alert('Signup successful!') 
+            res.status(200).json({email:'Signed'}) 
         } catch (err) {
             alert('Signup failed!')  
             console.log({message: err.message})

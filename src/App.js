@@ -28,15 +28,6 @@ function App() {
 
       </Routes>
     </Router>
-
-    // <Container>
-    //   <div className='app-container'>
-    //     <Header />
-    //     <InputFocus />
-    //     <UserTable />
-    //     <Footer/>
-    //   </div>
-    // </Container>
   );
 }
 
