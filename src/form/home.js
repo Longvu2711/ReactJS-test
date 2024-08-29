@@ -18,10 +18,8 @@ function HomePage() {
   return (
     <Container>
       <div className='app-container'>
-        <Header />
         <InputFocus />
         <UserTable />
-        <Footer/>
       </div>
     </Container>
   );

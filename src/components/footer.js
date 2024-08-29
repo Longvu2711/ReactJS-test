@@ -1,6 +1,8 @@
-import React from "react"
+import React from "react";
 
-const Footer = (props) => {
+const Footer = () => {
+
+
     return (
         <footer className="bg-body-tertiary text-center">
             <div className="container p-4 pb-0">
@@ -68,10 +70,10 @@ const Footer = (props) => {
             </div>
 
             <div className="text-center p-3" style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
-                © {new Date().getFullYear()} 
+                <p>© {new Date().getFullYear()}</p>
             </div>
         </footer>
-    )
+    );
 }
 
 export default Footer;

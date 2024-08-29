@@ -21,6 +21,7 @@ const Signup = () => {
             res.status(200).json({email:'Signed'}) 
         } catch (err) {
             alert('Signup failed!')  
+            
             console.log({message: err.message})
         }
     }

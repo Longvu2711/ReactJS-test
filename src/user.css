@@ -31,3 +31,51 @@
   .btn {
     margin: 10px 20px ;
   }
+  .action-buttons {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+}
+
+tr:hover .action-buttons {
+    opacity: 1;
+}
+
+.edit-btn, .delete-btn {
+    font-size: 0.875rem; /* Adjust font size if needed */
+    padding: 0.25rem 0.5rem;
+    border: none;
+    cursor: pointer;
+    background: transparent; 
+    color: #007bff;
+    text-decoration: underline; 
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    color: #0056b3; 
+    text-decoration: none; 
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  background-color: #f1f1f1; /* Adjust background color as needed */
+  padding: 10px;
+  text-align: center;
+}
+
