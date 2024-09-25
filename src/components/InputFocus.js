@@ -1,43 +1,67 @@
-import { useEffect, useRef, useState } from "react"
+import React, { useState, useEffect, useRef } from "react";
+import { Box, Container } from "@mui/system";
 
+function ToDoList() {
+  // Parse 'jobs' from localStorage, or initialize as an empty array if not found
+  const storageList = JSON.parse(localStorage.getItem('jobs')) || [];
 
-const InputFocus = () => {
-    const [data, setData] = useState([])
+  const [job, setJob] = useState('');
+  const [jobs, setJobs] = useState(storageList);
 
-    const inputRef = useRef()
+  const inputRef = useRef();
 
-    useEffect(() => inputRef.current.focus(), [])
+  // Automatically focus on the input when the component loads
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
-    const handlerAdd = (e) => {
-        if (e.key === 'Enter') {
-            setData([ e.target.value,...data])
-            e.target.value = ''
-        }
+  // Handle both button click and pressing 'Enter' key
+  const handleSubmit = () => {
+    setJobs(prev => {
+      const newJobs = [...prev, job];
+
+      const jsonJobs = JSON.stringify(newJobs);
+      localStorage.setItem('jobs', jsonJobs);
+
+      return newJobs;
+    });
+
+    setJob('');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
     }
-    const deleteList = () => {
-        setData([])
-    }
+  };
 
-    return (
-        <div className="border border-2 border-gray-800 rounded p-3 w-100">
-            <input
-                ref={inputRef}
-                onKeyDown={handlerAdd}
-                type="text"
-                placeholder="Note"
-                className="form-control w-100 mb-3" 
-            />
-            <ul className="list-group list-disc pl-4">
-                {data.map((item, index) => (
-                    <li key={-index} className="list-group-item">
-                        {item}
-                    </li>
-                ))}
-            </ul>
-          
-        </div>
+  return (
+    <Container maxWidth="sm">
+      <Box
+        sx={{
+          border: 0,
+          borderColor: 'secondary.main',
+          borderRadius: '16px',
+          padding: 2,
+          marginTop: 2,
+        }}
+      >
+        <input 
+          ref={inputRef}
+          value={job}
+          onChange={e => setJob(e.target.value)}
+          onKeyDown={handleKeyDown} 
+        />
+        <button onClick={handleSubmit}>Add</button>
 
-    )
+        <ul>
+          {jobs.map((job, index) => (
+            <li key={index}>{job}</li>
+          ))}
+        </ul>
+      </Box>
+    </Container>
+  );
 }
 
-export default InputFocus
+export default ToDoList;

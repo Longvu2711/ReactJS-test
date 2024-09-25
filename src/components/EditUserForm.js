@@ -39,7 +39,6 @@ function EditUserForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Send updated user data to the server
     Axios.put(`/test/user/${userId}`, user)
       .then(response => {
         navigate('/home'); 
